@@ -11,6 +11,9 @@ import { AdminIndexComponent } from './bookstore/admin-index/admin-index.compone
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BookStoreModule } from './bookstore/bookstore.module';
+import { CartDetailsComponent } from './cart-details/cart-details.component';
+import { CheckoutComponent } from './checkout/checkout.component';
+// import { CartSummaryComponent } from './cart-summary/cart-summary.component';
 
 @NgModule({
   declarations: [

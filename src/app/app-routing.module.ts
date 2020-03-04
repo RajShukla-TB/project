@@ -6,6 +6,8 @@ import { SigninComponent } from './bookstore/signin/signin.component';
 import { ProjectFirstGuard } from './projectFirst.guard';
 import { AdminIndexComponent } from './bookstore/admin-index/admin-index.component';
 import { CustomerIndexComponent } from './bookstore/customer-index/customer-index.component';
+import { CartDetailsComponent } from './cart-details/cart-details.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 const routes: Routes = [
   {path:"home",component:HomeComponent,canActivate:[ProjectFirstGuard]},
@@ -13,6 +15,8 @@ const routes: Routes = [
   {path:"signin",component:SigninComponent,canActivate:[ProjectFirstGuard]},
   {path:"admin-index",component:AdminIndexComponent,canActivate:[ProjectFirstGuard]},
   {path:"customer-index",component:CustomerIndexComponent,canActivate:[ProjectFirstGuard]},
+  {path:"cart",component:CartDetailsComponent,canActivate:[ProjectFirstGuard]},
+  {path:"checkout",component:CheckoutComponent,canActivate:[ProjectFirstGuard]},
   {path:"**",redirectTo:"/home"}
 ];
 

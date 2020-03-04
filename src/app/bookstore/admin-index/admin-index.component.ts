@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import { BookRepository } from 'src/app/model/book.repository';
+import { Book } from 'src/app/model/book.model';
+import { Promotion } from 'src/app/model/promotion.model';
+import { PromotionRepository } from 'src/app/model/promotion.repository';
 
 @Component({
   selector: 'app-admin-index',
@@ -10,9 +14,10 @@ import { NgForm } from '@angular/forms';
 export class AdminIndexComponent implements OnInit {
 
   private currentUser: string = null;
-  constructor(public router: Router) {
-    this.currentUser = sessionStorage.getItem("name")
-  }
+  constructor(public router: Router, public bookRepository : BookRepository, public book : Book,
+    public promo : Promotion, public promorepository: PromotionRepository ) {
+   this.currentUser = sessionStorage.getItem("name")
+ }
   //page modifications
   promocodeactive: boolean=false;
   editbookactive: boolean=false;
@@ -24,14 +29,24 @@ export class AdminIndexComponent implements OnInit {
   promocode:string;
   per: number;
   submitAddpromo(f:NgForm){
-
+    if(f.valid){
+      console.log("P");
+      console.log(this.promo.pid);
+      this.promorepository.savePromotion(this.promo).subscribe(data => {
+        console.log("K");
+      });
+    }
   }
   //form4
 
   bookeid:number;
   newbookquantity:number;
   submitEditBook(ff:NgForm){
-
+    if(ff.valid){
+      this.bookRepository.editBooks(this.book).subscribe(data => {
+          console.log("O");
+      });
+    }
   }
   //form5
 
@@ -40,6 +55,15 @@ export class AdminIndexComponent implements OnInit {
   newbookprice:number;
   addnewbookquantity:number;
   submitAddbook(fff:NgForm){
+
+    if(fff.valid){
+      
+      this.bookRepository.saveBooks(this.book).subscribe(data =>{
+        this.addbookactive=false;
+        console.log("ok");
+      });
+      console.log(this.book);
+    }
 
   }
   addbookss(){

@@ -14,20 +14,22 @@ export class SigninComponent implements OnInit{
    
   }
   
-  rpassword: string="";
+  rpassword: string= "";
+  constructor(public customerRepository: CustomerRepository, public customer: Customer, private router: Router) { }
 
-  constructor(public repo: CustomerRepository,public customer: Customer,public router:Router) { }
-  
   actor: string="";
-  submitted: boolean=false
-  
+  submitted: boolean=false;
+
   submitCustomer(form: NgForm){
+  
     this.submitted=true;
     if(form.valid){
       console.log(this.customer);
-      this.repo.saveCustomer(this.customer)
-      this.repo.getCustomer();
-      this.router.navigate(["/login"]);
+        this.customerRepository.saveCustomer(this.customer).subscribe(cust => {
+          this.submitted=false
+        });
+        this.router.navigate(['/login']);
+        //this.customerRepository.getCustomer();
     }
   }
 }

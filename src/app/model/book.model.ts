@@ -1,5 +1,8 @@
+import { Injectable } from '@angular/core';
+
+//@Injectable()
 export class Book{
-    public bookId ?: number;
+    public bookid ?: number;
         public booktitle ?: string;
         public bookauthor ?: string;
         public bookprice ?: number;

@@ -19,6 +19,8 @@ export class StaticBookDataSource{
     books : Book[]=[];
     //promos : Promotion[] = [];
     customer: Customer[] =[];
+
+    promotions: Promotion[]=[];
     /*private books : Book[] = [
         new Book(1,'E','P',100,1),
         new Book(2,'D','Q',200,2),
@@ -45,7 +47,9 @@ export class StaticBookDataSource{
         
         return from([this.customer]);
     }
-
+    getpromo():Observable<Promotion[]>{
+        return from([this.promotions]);
+    }
     savePromotion(promo : Promotion): Observable<Promotion>{
         
         return from([promo]);
@@ -53,6 +57,10 @@ export class StaticBookDataSource{
 
     editBooks(book : Book): Observable<Book>{
         return from([book]);
+    }
+
+    saveOrders(order : Order) : Observable<Order>{
+        return from([order]);
     }
     
 }

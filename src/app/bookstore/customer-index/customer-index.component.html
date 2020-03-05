@@ -8,7 +8,7 @@
             <button class="btn btn-primary" (click)="logout()">LogOut</button>
         </div>
     </div>
-    <h2>Welcome! {{currentUser| uppercase}}</h2>
+    <h2>Welcome! {{currentUser| uppercase}} <h3 style="color: goldenrod;">{{chalo}}</h3></h2>
     <div class="row">
         <div class="col-3 p-2">
             <button class="btn btn-block btn-outline-primary">HOME</button>
@@ -22,8 +22,11 @@
 
                 </h4>
                 <div class="card-text bg-white">By: {{book.bookauthor}}
-                    <button class="btn bg-success float-right btn-sm" (click)="addProductToCart(book)">
+                    <button *ngIf="book.bookquantity>2" class="btn bg-success float-right btn-sm" (click)="addProductToCart(book)">
                         Add to Cart
+                    </button>
+                    <button *ngIf="lessthan(book.bookquantity)" class="btn btn-danger float-right" [disabled]="1">
+                        Out Of Stock
                     </button>
                 </div>
             </div>

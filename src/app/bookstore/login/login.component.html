@@ -21,14 +21,13 @@
             <span *ngIf="(passwordd.touched && passwordd.invalid)"class="text-danger">Please enter your Password</span>
             <div *ngIf="passwordd.errors?.minlength" class="text-danger">Please enter your Password with minimum 7 characters</div>
         </div>
-        <label>Role: </label>
-
+<!-- 
         <div class="custom-control custom-radio">
         <input id="admin" type="radio"  value="admin" name="role" [(ngModel)]="customer.actor" required/>
         <label>Admin</label>
-        </div>
+        </div> -->
 
-        <div class="custom-control custom-radio">
+        <!-- <div class="custom-control custom-radio">
         <input id="customer" type="radio" value="customer" name="role" [(ngModel)]="customer.actor" required/>
         <label>Customer</label>
         </div>
@@ -36,7 +35,7 @@
         <div class="custom-control custom-radio">
             <input id="customer" type="radio" value="member" name="role" [(ngModel)]="customer.actor" required/>
             <label style="color: darkorange;">Member</label>
-            </div>
+            </div> -->
         <div class="text-center">
             <button type="submit" class="btn btn-primary m-1" [disabled]="!form2.dirty">Log In</button>
             <button class="btn btn-secondary m-1" routerLink="/home">Cancel</button>

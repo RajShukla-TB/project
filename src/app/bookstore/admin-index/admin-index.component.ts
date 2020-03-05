@@ -30,12 +30,12 @@ export class AdminIndexComponent implements OnInit {
   per: number;
   submitAddpromo(f:NgForm){
     if(f.valid){
-      console.log("P");
-      console.log(this.promo.pid);
       this.promorepository.savePromotion(this.promo).subscribe(data => {
-        console.log("K");
+        console.log("Added promo");
+        alert("Added Promotion code!!")
       });
     }
+    this.promocodeactive=false;
   }
   //form4
 
@@ -43,10 +43,14 @@ export class AdminIndexComponent implements OnInit {
   newbookquantity:number;
   submitEditBook(ff:NgForm){
     if(ff.valid){
-      this.bookRepository.editBooks(this.book).subscribe(data => {
-          console.log("O");
+      this.book=this.bookRepository.getBookById(this.bookeid);
+      this.book.bookquantity=this.newbookquantity;
+      this.bookRepository.decrementQuantity(this.book).subscribe(data => {
+          console.log("Editted Successfully!!");
+          alert("Editted Successfully!!");
       });
     }
+    this.editbookactive=false;
   }
   //form5
 
@@ -57,14 +61,14 @@ export class AdminIndexComponent implements OnInit {
   submitAddbook(fff:NgForm){
 
     if(fff.valid){
-      
+      console.log("yo");
       this.bookRepository.saveBooks(this.book).subscribe(data =>{
-        this.addbookactive=false;
+        
         console.log("ok");
       });
       console.log(this.book);
     }
-
+    this.addbookactive=false;
   }
   addbookss(){
     this.promocodeactive=false;
@@ -96,7 +100,7 @@ export class AdminIndexComponent implements OnInit {
     console.log(sessionStorage.getItem("actor"));
     setTimeout (() => {
       this.logout();
-   }, 10000);
+   }, 1000000);
   }
 
 }

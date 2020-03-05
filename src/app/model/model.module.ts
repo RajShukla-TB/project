@@ -15,9 +15,10 @@ import { Order } from './order.model';
 import { OrderRepository } from './order.repository';
 import { Promotion } from './promotion.model';
 import { PromotionRepository } from './promotion.repository';
+import { Book } from './book.model';
 
 @NgModule({
-    providers:[BookRepository,CustomerRepository,Promotion,PromotionRepository,Customer,Cart,Order,OrderRepository,RestDataSource,{ provide: StaticBookDataSource, useClass: RestDataSource}],
+    providers:[Book,BookRepository,CustomerRepository,Promotion,PromotionRepository,Customer,Cart,Order,OrderRepository,RestDataSource,{ provide: StaticBookDataSource, useClass: RestDataSource}],
     imports:[HttpClientModule]
 })
 

@@ -38,7 +38,7 @@
                         <td class="text-right">{{line.book.bookprice|currency:"INR"}}</td>
                         <td class="text-center">{{line.lineTotal|currency:"INR"}}<button
                                 class="btn btn-sm btn-danger float-right"
-                                (click)="cart.removeLine(line.product.id)">Remove
+                                (click)="cart.removeLine(line.book.bookid)">Remove
                             </button></td>
 
                     </tr>
@@ -46,7 +46,7 @@
                 <tfoot>
                     <tr>
                         <td colspan="3" class="text-right">Total: </td>
-                        <td class="text-center"><b>{{totalprice|currency:"INR"}}</b></td>
+                        <td class="text-center"><b>{{cart.cartPrice|currency:"INR"}}</b></td>
                     </tr>
                 </tfoot>
             </table>
@@ -55,12 +55,33 @@
     <div class="row">
         <div class="col">
             <div class="text-center">
-                <div class="form-group">
-                    <button *ngIf="checkActor()" class="btn bg-info" (click)=checkPromo()>Add a PromoCode</button>
-                    
+                <div *ngIf="checkActor()" class="form-group">
+                    <label>Promocode :</label>
+                    <input class="form-control" #promocodee="ngModel" name="promocode" [(ngModel)]="promocode" required />
+                    <div *ngIf="promocodee.touched && promocodee.invalid" class="text-danger">
+                        Please enter a valid promocode
+                    </div>
+                    <div class="text-left" style="color: forestgreen;">{{msgg}}{{msggg | currency:"INR"}}{{msggga}}<del>{{msgggg | currency:"INR"}}</del></div>
+                    <br>
+                    <button class="btn bg-info" (click)=checkPromo() [disabled]="!promocodee.dirty||boolla">Add a PromoCode</button>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Promocode</th>
+                                <th>Discount</th>
+                            </tr>
+                        </thead>
+                        
+                        <tbody>
+                            <tr *ngFor="let l of Promotions">
+                                <td>{{l.code}}</td>
+                                <td>{{l.discount}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
                 <button class="btn btn-primary m-1" routerLink="/customer-index">Continue Shopping</button>
-                <button class="btn btn-secondary m-1 bg-success" routerLink="/checkout">Check Out</button>
+                <button class="btn btn-secondary m-1 bg-success" (click)="checkit()">Check Out</button>
             </div>
         </div>
     </div>

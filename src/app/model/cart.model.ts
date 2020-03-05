@@ -9,23 +9,26 @@ export class Cart{
     public cartPrice: number = 0;
     // public finalstr: String="";
     addLine(book: Book,quantity: number=1){
-        let line=this.lines.find(line=>line.book.bookId==book.bookId);
+        let line=this.lines.find(line=>line.book.bookid==book.bookid);
+        //console.log(book.bookId);
         if(line!=undefined){
+            console.log("undef");
             line.quantity+=quantity;
         }else{
+            console.log("def");
             this.lines.push(new CartLine(book,quantity))
         }
         this.recalculate();
     }
     updateQuantity(book: Book,quantity: number){
-        let line=this.lines.find(line=>line.book.bookId==book.bookId);
+        let line=this.lines.find(line=>line.book.bookid==book.bookid);
         if(line!=undefined){
             line.quantity=Number(quantity);
         }
         this.recalculate();
     }
     removeLine(id: number){
-        let line=this.lines.findIndex(line=>line.book.bookId==id);
+        let line=this.lines.findIndex(line=>line.book.bookid==id);
         this.lines.splice(line,1);
         this.recalculate();
     }
@@ -34,11 +37,6 @@ export class Cart{
         this.itemCount = 0;
         this.cartPrice = 0; 
     }
-    // stringit(){
-    //     this.lines.forEach(function (value){
-    //         this.finalstr=this.finalstr + value.product +" "+ value.quantity+", ";
-    //     })
-    // }
 
     private recalculate(){
         this.itemCount=0;

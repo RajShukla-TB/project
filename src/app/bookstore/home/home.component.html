@@ -7,9 +7,41 @@
         </div>
     </div>
     <p>Home works!</p>
-    <div>
-        <a routerLink="/login">Go to LogIn</a></div>
-    <div>
-        <a routerLink="/signin">Go to Sign-In</a>
+    <div class="text-center">
+        <button class="btn btn-success" routerLink="/login">Go to LogIn</button>
+        <span><button class="btn btn-primary" routerLink="/signin">Go to Sign-In</button></span>
+    </div>
+
+    <div class="row">
+        
+        <div class="col-9 p-2 text-black">
+            <div *ngFor="let book of Books" class="card m-3 p-1 bg-light text-black">
+                <h4>
+                    {{book.booktitle}}<span class="badge badge-pill bg-info float-right badge-primary">
+
+                        {{book.bookprice | currency:"INR"}}</span>
+
+                </h4>
+                <div class="card-text bg-white">By: {{book.bookauthor}}
+                    <button *ngIf="book.bookquantity>2" class="btn bg-success float-right btn-sm" (click)="Go()">
+                        LogIn To Purchase Books
+                    </button>
+                </div>
+            </div>
+            <div class="form-inline float-left mr-1">
+                <select class="form-control" [value]="productsPerPage" (change)="changePageSize($event.target.value)">
+                    <option value="3">3 per Page</option>
+                    <option value="4">4 per Page</option>
+                    <option value="5">5 per Page</option>
+                    <option value="6">6 per Page</option>
+                </select>
+            </div>
+            <div class="btn-group float-right">
+                <button *ngFor="let page of PageNumbers" (click)="changePage(page)" class="btn btn-outline-primary"
+                    [class.active]="page==selectedPage">
+                    {{page}}
+                </button>
+            </div>
+        </div>
     </div>
 </div>

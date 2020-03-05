@@ -34,33 +34,34 @@ export class LoginComponent implements OnInit {
   //   }
   //   console.log(sessionStorage.getItem("actor"));
   // }
-  public check1:String;
+  public check2: String;
+  public check1:string;
   public check:String;
   msg:string="";
   constructor(public repo: CustomerRepository,public customer: Customer,private router : Router){}
   submitLogin(f:NgForm){
     if(f.valid){
       if(this.repo.getByCustomerUsername(this.customer.username)!=undefined){
-        console.log("Yay!!");
+        
         this.check1 = (this.repo.getByCustomerUsername(this.customer.username)).actor;
-
+        this.check2=(this.repo.getByCustomerUsername(this.customer.username)).username;
         this.check = (this.repo.getByCustomerUsername(this.customer.username)).password;  
         console.log(this.repo.getByCustomerUsername(this.customer.username));
         
         if(this.check === this.customer.password){
           
           sessionStorage.setItem("name",this.customer.username);
-          if(this.check1===this.customer.actor){
-            if(this.customer.actor === "admin"){
+          if(this.customer.username === this.check2){
+            if(this.check1=="admin" ){
               sessionStorage.setItem("actor","admin");
               this.router.navigate(['/admin-index']);
             }
-            else if (this.customer.actor==="customer"||this.customer.actor==="member"){
-              sessionStorage.setItem("actor",this.customer.actor);
+            else if (this.check1==="customer"||this.check1==="member"){
+              sessionStorage.setItem("actor",this.check1);
               this.router.navigate(['/customer-index']);
             }
           }else{
-            alert("Role is not valid !!");
+            alert("username mismatch!!");
           }
           }else{
             this.msg="Please enter valid credentials!!"

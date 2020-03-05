@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Book } from './book.model';
 import { Customer } from './customer.model';
 import { Promotion } from './promotion.model';
+import { Order } from './order.model';
 
 
 const  PROTOCOL = "http";
@@ -48,5 +49,17 @@ export class RestDataSource{
 
     editBooks(book : Book): Observable<Book>{
         return this.http.put<Book>(this.baseUrl + "api/books/update",book);
+    }
+    getpromo():Observable<Promotion[]>{
+        return this.http.get<Promotion[]>(this.baseUrl + "api/promotions/all");
+    }
+
+    saveOrder(order : Order) : Observable<Order>{
+        return this.http.post<Order>(this.baseUrl + "api/orders/save", order);
+    }
+
+    decrementQuantity(book:Book): Observable<Book>{
+        console.log("Hi from rest");
+        return this.http.put<Book>(this.baseUrl + "api/books/quantity/u",book);
     }
 }

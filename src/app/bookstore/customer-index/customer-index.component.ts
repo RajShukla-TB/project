@@ -14,7 +14,7 @@ export class CustomerIndexComponent implements OnInit {
 
   private currentUser: string = null;
   chalo:string="";
-  time:number=5000;
+  time:number=5000000;
   constructor(public router: Router,private repository: BookRepository,private cart: Cart) {
     this.currentUser = sessionStorage.getItem("name")
   }
@@ -51,9 +51,9 @@ export class CustomerIndexComponent implements OnInit {
 
   addProductToCart(book: Book){
       this.cart.addLine(book);
-      this.time+=5000;
   }
   logout(){
+    this.cart.clear();
     sessionStorage.removeItem("name");
     sessionStorage.removeItem("actor");
     this.router.navigate(["/home"]);

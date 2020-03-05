@@ -57,7 +57,7 @@
             <div class="text-center">
                 <div *ngIf="checkActor()" class="form-group">
                     <label>Promocode :</label>
-                    <input class="form-control" #promocodee="ngModel" name="promocode" [(ngModel)]="promocode" required />
+                    <input class="form-control" #promocodee="ngModel" name="promocode" [(ngModel)]="promocode" [disabled]="varbool" required />
                     <div *ngIf="promocodee.touched && promocodee.invalid" class="text-danger">
                         Please enter a valid promocode
                     </div>

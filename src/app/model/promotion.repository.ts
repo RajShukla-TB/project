@@ -21,5 +21,8 @@ export class PromotionRepository{
     getPromotion(promo: string):Promotion{
         return this.promos.find(p=>p.code==promo);
     }
+    getallPromotion():Promotion[]{
+        return this.promos;
+    }
 
 }

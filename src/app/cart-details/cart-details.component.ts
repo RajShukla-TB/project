@@ -36,6 +36,10 @@ export class CartDetailsComponent implements OnInit {
       this.msgg="You saved Rs. "+this.diff+"  !!  Buy this in ";
       this.cart.cartPrice=this.newprice;
       this.boolla=true;
+      this.varbool=true;
+    }
+    else{
+      alert("Enter a valid Promotion code!");
     }
     //if code present in promocode checkcode()
     //fetch dicount % x
@@ -48,9 +52,10 @@ export class CartDetailsComponent implements OnInit {
     }
     return false;
   } 
-  /*get Promotions(): Promotion[]{
-    return this.repo.getPromotions();
-  }*/
+  varbool:boolean=false;
+  get Promotions(): Promotion[]{
+    return this.repo.getallPromotion();
+  }
   flag:boolean=true;
   checkit(){
     this.cart.lines.forEach(e => {
@@ -60,9 +65,7 @@ export class CartDetailsComponent implements OnInit {
         alert("Ordered Quantity is Unavailable for-->"+this.book.booktitle);
       }
     });
-    console.log("***********")
     if(this.flag==true){
-      console.log(".......................")
       this.router.navigate(["/checkout"]);
     }
     
